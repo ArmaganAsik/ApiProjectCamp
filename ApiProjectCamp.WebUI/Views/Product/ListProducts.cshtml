@@ -1,0 +1,51 @@
+﻿@model List<ResultProductDto>
+@{
+    ViewData["Title"] = "ListProducts";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Ürün Listesi Yönetimi</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ürün Adı</th>
+                                    <th scope="col">Ürün Fiyatı</th>
+                                    <th scope="col">Ürün Kategori</th>
+                                    <th scope="col">Ürünü Sil</th>
+                                    <th scope="col">Ürünü Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (ResultProductDto item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td>@item.Name</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.CategoryName</td>
+                                        <td><a href="/Product/DeleteProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Product/UpdateProduct/@item.ProductId" class="btn btn-warning">Güncelle</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <a href="/Product/CreateProduct" class="btn btn-success">Yeni ürün ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

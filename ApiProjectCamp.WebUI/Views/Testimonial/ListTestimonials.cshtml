@@ -1,0 +1,53 @@
+﻿@model List<ResultTestimonialDto>
+@{
+    ViewData["Title"] = "ListTestimonials";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Müşteri Yorumları Listesi</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ad Soyad</th>
+                                    <th scope="col">Unvan</th>
+                                    <th scope="col">Yorum</th>
+                                    <th scope="col">Görsel Url</th>
+                                    <th scope="col">Yorumu Sil</th>
+                                    <th scope="col">Yorumu Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (ResultTestimonialDto item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Comment</td>
+                                        <td>@item.ImageUrl</td>
+                                        <td><a href="/Testimonial/DeleteTestimonial/@item.TestimonialId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Testimonial/UpdateTestimonial/@item.TestimonialId" class="btn btn-warning">Güncelle</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <a href="/Testimonial/CreateTestimonial" class="btn btn-success">Yeni Müşteri Yorumu ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
