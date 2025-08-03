@@ -1,0 +1,53 @@
+﻿@model List<ResultChefDto>
+@{
+    ViewData["Title"] = "ListChefs";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Şef Listesi</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Ad-Soyad</th>
+                                    <th scope="col">Başlık/Unvan</th>
+                                    <th scope="col">Açıklama</th>
+                                    <th scope="col">Görsel Url</th>
+                                    <th scope="col">Şefi Sil</th>
+                                    <th scope="col">Şefi Güncelle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (ResultChefDto item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td>@item.NameSurname</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.ImageUrl</td>
+                                        <td><a href="/Chef/DeleteChef/@item.ChefId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Chef/UpdateChef/@item.ChefId" class="btn btn-warning">Güncelle</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <a href="/Chef/CreateChef" class="btn btn-success">Yeni şef ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

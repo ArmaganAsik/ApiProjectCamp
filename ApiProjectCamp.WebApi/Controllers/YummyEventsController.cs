@@ -44,6 +44,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         public IActionResult UpdateYummyEvent(YummyEvent yummyEvent)
         {
             _apiContext.YummyEvents.Update(yummyEvent);
+            _apiContext.SaveChanges();
             return Ok("Yummy event updated successfully!");
         }
 
