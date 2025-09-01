@@ -61,5 +61,33 @@ namespace ApiProjectCamp.WebApi.Controllers
             GetByIdReservationDto getByIdReservationDto = _mapper.Map<GetByIdReservationDto>(reservation);
             return Ok(getByIdReservationDto);
         }
+
+        [HttpGet("GetTotalReservationCount")]
+        public IActionResult GetTotalReservationCount()
+        {
+            int value = _apiContext.Reservations.Count();
+            return Ok(value);
+        }
+
+        [HttpGet("GetTotalCustomerCount")]
+        public IActionResult GetTotalCustomerCount()
+        {
+            int value = _apiContext.Reservations.Sum(x => x.NumberOfPeople);
+            return Ok(value);
+        }
+
+        [HttpGet("GetPendingReservations")]
+        public IActionResult GetPendingReservations()
+        {
+            int value = _apiContext.Reservations.Where(x=>x.ReservationStatus == "Onay Bekliyor").Count();
+            return Ok(value);
+        }
+
+        [HttpGet("GetApprovedReservations")]
+        public IActionResult GetApprovedReservations()
+        {
+            int value = _apiContext.Reservations.Where(x => x.ReservationStatus == "Onaylandı").Count();
+            return Ok(value);
+        }
     }
 }

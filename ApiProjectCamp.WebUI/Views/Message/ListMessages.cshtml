@@ -21,9 +21,9 @@
                                     <th scope="col">İsim - Soyisim</th>
                                     <th scope="col">Mail</th>
                                     <th scope="col">Konu</th>
-                                    <th scope="col">Mesaj Detayı</th>
                                     <th scope="col">Gönderim Tarihi</th>
                                     <th scope="col">Okundu Bilgisi</th>
+                                    <th scope="col">Mesajı Oku</th>
                                     <th scope="col">Mesajı Sil</th>
                                     <th scope="col">Mesajı Güncelle</th>
                                 </tr>
@@ -38,9 +38,9 @@
                                         <td>@item.NameSurname</td>
                                         <td>@item.Email</td>
                                         <td>@item.Subject</td>
-                                        <td>@item.MessageDetails</td>
                                         <td>@item.SendDate.ToString("dd-MM-yyyy")</td>
                                         <td>@item.IsRead</td>
+                                        <td><a href="/Message/AnswerMessageWithOpenAI/@item.MessageId" class="btn btn-success">Oku</a></td>
                                         <td><a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-danger">Sil</a></td>
                                         <td><a href="/Message/UpdateMessage/@item.MessageId" class="btn btn-warning">Güncelle</a></td>
                                     </tr>
