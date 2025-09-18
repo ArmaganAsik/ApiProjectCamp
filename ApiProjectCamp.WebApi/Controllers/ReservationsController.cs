@@ -4,6 +4,7 @@ using ApiProjectCamp.WebApi.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO.Pipes;
 
 namespace ApiProjectCamp.WebApi.Controllers
 {
@@ -79,7 +80,7 @@ namespace ApiProjectCamp.WebApi.Controllers
         [HttpGet("GetPendingReservations")]
         public IActionResult GetPendingReservations()
         {
-            int value = _apiContext.Reservations.Where(x=>x.ReservationStatus == "Onay Bekliyor").Count();
+            int value = _apiContext.Reservations.Where(x => x.ReservationStatus == "Onay Bekliyor").Count();
             return Ok(value);
         }
 
@@ -88,6 +89,36 @@ namespace ApiProjectCamp.WebApi.Controllers
         {
             int value = _apiContext.Reservations.Where(x => x.ReservationStatus == "Onaylandı").Count();
             return Ok(value);
+        }
+
+        [HttpGet("GetReservationStats")]
+        public IActionResult GetReservationStats()
+        {
+            DateTime fourMonthsAgo = DateTime.Today.AddMonths(-3);
+
+            var rawData = _apiContext.Reservations
+                .Where(x => x.ReservationDate >= fourMonthsAgo)
+                .GroupBy(x => new { x.ReservationDate.Month, x.ReservationDate.Year })
+                .Select(t => new
+                {
+                    t.Key.Year,
+                    t.Key.Month,
+                    Approved = t.Count(x => x.ReservationStatus == "Onaylandı"),
+                    Pending = t.Count(x => x.ReservationStatus == "Onay Bekliyor"),
+                    Canceled = t.Count(x => x.ReservationStatus == "İptal Edildi"),
+                })
+                .OrderBy(p => p.Month).ThenBy(p => p.Month)
+                .ToList();
+
+            var result = rawData.Select(x => new ChartReservationDto
+            {
+                Month = new DateTime(x.Year, x.Month, 1).ToString("MMM yyyy"),
+                Approved = x.Approved,
+                Pending = x.Pending,
+                Canceled = x.Canceled
+            }).ToList();
+
+            return Ok(result);
         }
     }
 }
