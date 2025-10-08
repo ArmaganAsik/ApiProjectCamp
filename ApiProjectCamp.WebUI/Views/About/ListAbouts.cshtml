@@ -4,6 +4,13 @@
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
+<style>
+  .table-fixed {
+    table-layout: fixed;
+    width: 100%;
+  }
+</style>
+
 <section class="section">
     <div class="section-body">
         <div class="row">
@@ -13,7 +20,7 @@
                         <h4>Hakkımda Alanı Listesi</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-fixed">
                             <thead>
                                 <tr>
                                     <th scope="col">Başlık</th>
