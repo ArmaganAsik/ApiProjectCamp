@@ -10,5 +10,8 @@ Bu proje, .NET eğitimi kapsamında Clean Code ve SOLID ilkelerine bağlı olara
 - View Component  
 - WebUI üzerinden API consume  
 - Admin panel (sidebar ile)  
+- ChatGpt ve HuggingFace yapay zeka araçları
+- SignalR
+- Toksik mesaj tespiti, anlık mesajlaşma
 
 uygulama örnekleri mevcuttur. Geliştirilmeye devam etmekte olup, düzenli olarak GitHub’a pushlanmaktadır.
