@@ -27,6 +27,19 @@ namespace ApiProjectCamp.WebUI.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ListImagesWithEdit()
+        {
+            HttpClient client = _httpClientFactory.CreateClient();
+            HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7258/api/Images");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string jsonData = await responseMessage.Content.ReadAsStringAsync();
+                List<ResultImageDto> values = JsonConvert.DeserializeObject<List<ResultImageDto>>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
         [HttpGet]
         public IActionResult CreateImage()
         {
@@ -42,7 +55,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             HttpResponseMessage responseMessage = await client.PostAsync("https://localhost:7258/api/Images", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("ListImages");
+                return RedirectToAction("ListImagesWithEdit");
             }
             return View();
         }
@@ -51,7 +64,7 @@ namespace ApiProjectCamp.WebUI.Controllers
         {
             HttpClient client = _httpClientFactory.CreateClient();
             await client.DeleteAsync("https://localhost:7258/api/Images?id=" + id);
-            return RedirectToAction("ListImages");
+            return RedirectToAction("ListImagesWithEdit");
         }
 
         [HttpGet]
@@ -70,7 +83,7 @@ namespace ApiProjectCamp.WebUI.Controllers
             string jsonData = JsonConvert.SerializeObject(updateImageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             await client.PutAsync("https://localhost:7258/api/Images", stringContent);
-            return RedirectToAction("ListImages");
+            return RedirectToAction("ListImagesWithEdit");
         }
     }
 }

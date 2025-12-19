@@ -4,6 +4,7 @@ using ApiProjectCamp.WebApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiProjectCamp.WebApi.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20251217171713_Mig9_AddGroupReservations")]
+    partial class Mig9_AddGroupReservations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,18 +242,12 @@ namespace ApiProjectCamp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("GroupTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastProcessTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("NumberOfPeople")
-                        .HasColumnType("int");
 
                     b.Property<string>("Priority")
                         .IsRequired()
