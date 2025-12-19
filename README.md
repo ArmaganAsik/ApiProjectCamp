@@ -1,17 +1,16 @@
 # ApiProjectCamp
 
-Bu proje, .NET eğitimi kapsamında Clean Code ve SOLID ilkelerine bağlı olarak geliştirilmiş Core tabanlı bir API projesidir. İçerisinde:
-
+This project was developed as a Core-based API project within the scope of .NET training, adhering to Clean Code and SOLID principles. It is designed as two separate layers: API and UI. It includes:
 - AutoMapper  
 - FluentValidation  
 - Swagger  
 - EF Core  
 - Dependency Injection  
 - View Component  
-- WebUI üzerinden API consume  
-- Admin panel (sidebar ile)  
-- ChatGpt ve HuggingFace yapay zeka araçları
+- API consume from the WebUI
+- Admin panel (with sidebar) 
+- ChatGPT OpenAI and Hugging Face AI tools
 - SignalR
-- Toksik mesaj tespiti, anlık mesajlaşma
+- Toxic message detection and real-time messaging
 
-uygulama örnekleri mevcuttur. Geliştirilmeye devam etmekte olup, düzenli olarak GitHub’a pushlanmaktadır.
+Sample implementations of these features are provided.
