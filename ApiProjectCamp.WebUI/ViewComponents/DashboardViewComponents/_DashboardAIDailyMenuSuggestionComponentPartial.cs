@@ -27,17 +27,16 @@ namespace ApiProjectCamp.WebUI.ViewComponents.DashboardViewComponents
                 new AuthenticationHeaderValue("Bearer", OPENAI_API_KEY);
 
             string prompt = @"
-Aşağıdaki formatta rastgele 4 farklı dünya mutfağından (ör: Çin, İtalyan, Türk, Hint, Japon, Fransız, Meksika...) 
-her biri için günlük bir menü oluştur.
+Aşağıdaki formatta rastgele 4 farklı dünya mutfağından her biri için günlük bir menü oluştur. Burada ülkeler aşağıda verilecektir.
 
 ÖNEMLİ KURALLAR:
 - Mutlaka 4 FARKLI ülke mutfağı seç.
 - Daha önce seçtiğin mutfakları tekrar etme (iç mantığında çeşitlilik üret).
-- Popüler olmayan mutfaklardan da seçebilirsin (örneğin Peru, Tayland, Fas, İran, Kore, Şili, Portekiz, Endonezya, Lübnan vb.).
+- Seçim yapılacak ülkeler : Türkiye, Almanya, Fransa, İtalya, İspanya, Portekiz, Bulgaristan, Gürcistan, Yunanistan, İran, Çin.
 - Ülkeleri HER SEFERİNDE FARKLI seç.
 - Tüm içerik TÜRKÇE olacak.
-- Ülke adını Türkçe yaz (ör: “Peru Mutfağı”).
-- ISO Country Code zorunlu (ör: PE, TH, MA, IR, KR vb.)
+- Ülke adını Türkçe yaz (ör: “İtalya Mutfağı”).
+- ISO Country Code zorunlu (ör: IT, TR, ES, GR, BG vb.)
 - Örnek vermiyorum, tamamen özgün üret.
 - Cevap sadece geçerli JSON olsun.
 
